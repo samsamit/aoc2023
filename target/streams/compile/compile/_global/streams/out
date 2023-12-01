@@ -1,0 +1,8 @@
+[0m[[0m[31merror[0m] [0m[0m/Users/samutiainen/personal/aoc2023/src/main/scala/utils/getInput.scala:18:16: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : Array[_1] where type _1 >: Array[String][0m
+[0m[[0m[31merror[0m] [0m[0m required: Array[Array[String]][0m
+[0m[[0m[31merror[0m] [0m[0mNote: _1 >: Array[String], but class Array is invariant in type T.[0m
+[0m[[0m[31merror[0m] [0m[0mYou may wish to investigate a wildcard type such as `_ >: Array[String]`. (SLS 3.2.10)[0m
+[0m[[0m[31merror[0m] [0m[0m        return parsedLines[0m
+[0m[[0m[31merror[0m] [0m[0m               ^[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m
