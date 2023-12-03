@@ -58,3 +58,8 @@ coursier
 
 # Sourcegraph specific
 index.scip
+
+.metals/
+.bloop/
+.ammonite/
+metals.sbt
