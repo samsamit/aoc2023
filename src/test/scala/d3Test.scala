@@ -17,7 +17,8 @@ class D3Test extends org.scalatest.funsuite.AnyFunSuite {
   }
 
   test("d3p2"){
-    var input = """467..114..
+    var input = """
+467..114..
 ...*......
 ..35..633.
 ......#...

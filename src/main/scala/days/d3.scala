@@ -133,16 +133,27 @@ object D3 extends App {
   def solve2(input: String): Number = {
     var data = Parse.parseInput(input)
      var parts = new EngineParts(data)
-     var nums: List[Int] = List()
-     parts.rawMatrix.zipWithIndex.foreach(row => row._1.zipWithIndex.foreach(cell => {
-      println(s"char: ${cell._1} matches: ${cell._1.matches("[=&#+\\/*%\\-@$]")}")
-      if(cell._1.matches("[=&#+\\/*%\\-@$]")){
-        println(cell._1)
-        parts.getNumberNeighbors(row._2, cell._2) match {
-        case Some(value) => nums = nums.concat(value)
-        case None => None
-      }}
-     }))
-    return nums.sum
+     var cellMap = parts.rawMatrix.zipWithIndex
+      .flatMap(row => row._1.zipWithIndex
+      .map(cell => new Cell(row._2, cell._2, cell._1, cell._1.matches("[=&#+\\/*%\\-@$]") match {
+          case false => None
+          case true => parts.getNumberNeighbors(row._2, cell._2)
+        }
+     )))
+
+     cellMap.foreach(cell => println(cell.toString))
+     var nums = cellMap.map(cell => cell.getNeighbourPower())
+
+     println(nums)
+     return nums.sum
   }
+}
+
+class Cell(row: Int, col: Int, value: String, neighbours: Option[List[Int]]){
+  def getNeighbourPower(): Int = {
+    var values = neighbours.getOrElse(List())
+    if(values.length == 2) return values.product
+    else return 0
+  }
+  override def toString = s"row: $row, col: $col, value: $value, neighbours: $neighbours"
 }
