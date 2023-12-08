@@ -21,25 +21,24 @@ object D4 extends App {
     var cards = data.map(new Card(_))
 
     var cardWins = List.range(0, cards.length).map(cards.apply(_).getWinningCardCount())
-    println(cardWins)
 
     var countMap: Map[Int, Int] = Map()
 
     cardWins.zipWithIndex.foreach(x => {
-        println(List.range(x._2+1, x._2+1 + x._1))
         var range = List.range(x._2+1, x._2+1 + x._1)
-        countMap = countMap.updated(x._2, countMap.getOrElse(x._2, 1) + 1)
+
+        var thisNumCount = countMap.getOrElse(x._2, 0) + 1
+        countMap = countMap.updated(x._2, thisNumCount)
+        
         range.foreach(y => {
-            var prevCount = countMap.getOrElse(y, 1)
-            var newCount = (1 * prevCount)
-            println(s"new ${y+1} = $newCount")
+            var prevCount = countMap.getOrElse(y, 0)
+            var newCount = prevCount + (1*thisNumCount)
             countMap = countMap.updated(y, newCount)
         })
     })
 
-    println(countMap) //.map(x => x._1+1 -> x._2).toMap)
-
-    return 0
+    var count = countMap.map(x => x._2).sum
+    return count
   }
 }
 

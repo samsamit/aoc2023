@@ -17,7 +17,6 @@ object D3 extends App {
     println(s"rows: ${rawMatrix.length} cols: ${rawMatrix.apply(0).length}")
 
     def hasSymbolNeighbor(targetRow: Int, col: Int, colOffset: Int): Boolean = {
-      try{
       var row = matrix.apply(targetRow)
       val num = matrix.apply(targetRow).apply(col)
       var actualCol = col+colOffset
@@ -27,11 +26,7 @@ object D3 extends App {
       if(col - 1 >= 0 && row.apply(col-1).matches("[=&#+\\/*%\\-@$]")) return true
       if(col + 1 < row.length && row.apply(col+1).matches("[=&#+\\/*%\\-@$]")) return true
       return false
-      }
-      catch {
-        case _ => {println(s"row: $targetRow, col: $col")
-        return false}
-      }
+
     }
     private def checkRowForSymbol(targetRow: Int, cols: (Int, Int)): Boolean = {
       var row = rawMatrix.apply(targetRow).slice(Math.max(0, cols._1), cols._2).toList

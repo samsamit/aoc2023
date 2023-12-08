@@ -34,7 +34,7 @@ object D1 extends App {
    val matches = ListBuffer[String]()
     while(matcher.find()){
       val numberMatch = matcher.group()
-     matches += numberMatch
+      matches += numberMatch
       // Adjust the start position to allow overlapping matches
       matcher.region(matcher.start() + 1, str.length())
     }
